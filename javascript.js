@@ -60,14 +60,14 @@ $('button').on("click", function(event){
 
         	var rating = results[i].rating;
 
+        	var imgId = results[i].id;
+
         	var p = $("<p>").text("Rating: " + rating);
 
 				var placeholder = $('<img>');
 				placeholder.attr("src", results[i].images.fixed_height_still.url);
 				placeholder.attr("data-state", "static");
-				placeholder.attr("id", i);
-				// placeholder.on("click", alert('hi'));
-
+				placeholder.attr("id", results[i].id)
 
 				gifDiv.prepend(p);
 				gifDiv.prepend(placeholder);
@@ -81,8 +81,11 @@ $('button').on("click", function(event){
  			// // 	placeholder.attr("src", results[i].images.fixed_height.url);
  			// }  	
  		} //ends for-loop
+
+
     }) //ends the done function			  	 
 }); // ends button click function
+
 
 
 
