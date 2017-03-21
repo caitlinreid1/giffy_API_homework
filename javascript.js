@@ -25,16 +25,62 @@ var animalArray = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird
 	//when the submit button is clicked...
 	$('#addAnimal').on("click", function(event) {
 
-		event.preventDefault();
+		// event.preventDefault();
 
 		var userInput = $('#animal-input').val().trim();
 
 		animalArray.push(userInput);
 
 		renderButtons();
+
 	})
 
 renderButtons();	
+
+
+	//when ANY button is clicked...
+	$('button').on("click", function(event){
+
+		var animalType = this.getAttribute("data-name").split(' ').join('+');
+
+		var queryURL = "http://api.giphy.com/v1/gifs/search?q="+animalType+"&api_key=dc6zaTOxFJmzC";
+
+		$.ajax({
+      		url: queryURL,
+      		method: 'GET'
+    	})
+    	.done(function(response) {
+
+     		var results = response.data
+
+	     		for (var i = 0; i < results.length; i++) {
+	     			var gifDiv = $("<div class='item'>");
+
+	            	var rating = results[i].rating;
+
+	            	var p = $("<p>").text("Rating: " + rating);
+
+	   				var placeholder = $('<img>');
+	   				placeholder.attr("src", results[i]..images.fixed_height.url);
+
+	   				gifDiv.prepend(p);
+	   				gifDiv.prepend(placeholder);
+
+	   				$('#animalGifs').append(gifDiv);
+	   				// $('img').attr("src", results);
+	     		// 	$('img').attr("alt", animalType);
+
+	     		
+
+	     		$('#animalGifs').append(placeholder);
+	     		}
+    		}); //end the done function
+	})
+
+
+
+		
+
 
 
 
@@ -50,9 +96,3 @@ renderButtons();
 
 
 
-// $.ajax({
-//       url: queryURL,
-//       method: 'GET'
-//     }).done(function(response) {
-//       console.log(response);
-//     });
