@@ -44,7 +44,7 @@ $('button').on("click", function(event){
 
 	var animalType = this.getAttribute("data-name").split(' ').join('+');
 
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q="+animalType+"&limit=10&api_key=dc6zaTOxFJmzC";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q="+animalType+"&limit=10&api_key=dc6zaTOxFJmzC";
 
 	$.ajax({
   		url: queryURL,
